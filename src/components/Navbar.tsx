@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import Button from './Button';
+import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
+import ProfileModal from './ProfileModal';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const location = useLocation();
+  const { user, isAuthenticated } = useAuth();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +51,10 @@ export default function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleProfileClick = () => {
+    setIsProfileModalOpen(true);
+  };
+
   return (
     <>
       {/* Desktop Navbar */}
@@ -54,7 +64,7 @@ export default function Navbar() {
         {/* Navbar Grid Background */}
         <div className="absolute inset-0 rounded-full overflow-hidden">
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#fefcfb]/85 via-[#f3f0ee]/85 to-[#e8e4e2]/85"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/85 via-primary-100/85 to-primary-200/85 dark:from-luxury-dark-bg/85 dark:via-luxury-dark-surface/85 dark:to-luxury-dark-surface/85"></div>
           
           {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-20 animate-grid-pulse">
@@ -90,7 +100,7 @@ export default function Navbar() {
           </div>
         </div>
         
-        <div className="relative bg-white/30 backdrop-blur-md rounded-full px-8 py-2 shadow-lg border border-white/20 h-12">
+        <div className="relative bg-white/30 backdrop-blur-md rounded-full px-8 py-2 shadow-lg border border-white/20 dark:bg-luxury-dark-surface/30 dark:border-luxury-dark-border/20 h-12">
           <div className="flex items-center justify-between h-full">
             {/* Left: Navigation Links */}
             <div className="flex items-center space-x-5">
@@ -98,10 +108,10 @@ export default function Navbar() {
                 <Link
                   key={path}
                   to={path}
-                  className={`relative px-3 py-1 rounded-full transition-all duration-300 hover:bg-white/40 font-['Inter'] font-medium text-sm ${
+                  className={`relative px-3 py-1 rounded-full transition-all duration-300 hover:bg-white/40 dark:hover:bg-luxury-dark-surfaceHover/40 font-['Inter'] font-medium text-sm ${
                     location.pathname === path 
-                      ? 'bg-white/50 text-[#22223b]' 
-                      : 'text-[#9a8c98] hover:text-[#22223b]'
+                      ? 'bg-white/50 text-primary-900 dark:bg-luxury-dark-surfaceHover/50 dark:text-luxury-dark-text' 
+                      : 'text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-900 dark:hover:text-luxury-dark-text'
                   }`}
                 >
                   {label}
@@ -109,14 +119,35 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right: Auth Buttons with proper spacing and visual separator */}
-            <div className="flex items-center gap-4 ml-16 pl-6 border-l border-white/30">
-                             <Link to="/login" className="font-['Inter'] font-medium text-sm text-[#9a8c98] hover:text-[#22223b] transition-all duration-300 px-3 py-1">
-                 Login
-               </Link>
-                             <Link to="/signup" className="px-4 py-1.5 bg-[#d8b4a0] text-white rounded-full font-['Inter'] font-medium text-sm hover:bg-[#c9ada7] hover:shadow-md transition-all duration-300 whitespace-nowrap">
-                 Sign Up
-               </Link>
+            {/* Right: Theme Toggle, Auth Buttons or Profile Icon */}
+            <div className="flex items-center gap-4 ml-16 pl-6 border-l border-white/30 dark:border-luxury-dark-border/30">
+              {/* Theme Toggle */}
+              <ThemeToggle size="sm" />
+              
+              {isAuthenticated ? (
+                <button
+                  onClick={handleProfileClick}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-white/40 dark:hover:bg-luxury-dark-surfaceHover/40 transition-all duration-300 group"
+                >
+                  <img
+                    src={user?.avatar}
+                    alt={`${user?.firstName} ${user?.lastName}`}
+                    className="w-8 h-8 rounded-full border-2 border-white/50 dark:border-luxury-dark-border/50"
+                  />
+                  <span className="font-['Inter'] font-medium text-sm text-primary-500 dark:text-luxury-dark-textSecondary group-hover:text-primary-900 dark:group-hover:text-luxury-dark-text">
+                    {user?.firstName}
+                  </span>
+                </button>
+              ) : (
+                <>
+                  <Link to="/login" className="font-['Inter'] font-medium text-sm text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-900 dark:hover:text-luxury-dark-text transition-all duration-300 px-3 py-1">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="px-4 py-1.5 bg-primary-300 dark:bg-luxury-dark-accent text-white rounded-full font-['Inter'] font-medium text-sm hover:bg-primary-400 dark:hover:bg-luxury-dark-accentHover hover:shadow-md transition-all duration-300 whitespace-nowrap">
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -129,7 +160,7 @@ export default function Navbar() {
         {/* Mobile Navbar Grid Background */}
         <div className="absolute inset-0 rounded-full overflow-hidden">
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#fefcfb]/85 via-[#f3f0ee]/85 to-[#e8e4e2]/85"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/85 via-primary-100/85 to-primary-200/85 dark:from-luxury-dark-bg/85 dark:via-luxury-dark-surface/85 dark:to-luxury-dark-surface/85"></div>
           
           {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-20 animate-grid-pulse">
@@ -165,30 +196,51 @@ export default function Navbar() {
           </div>
         </div>
         
-        <div className="relative bg-white/30 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 h-12">
+        <div className="relative bg-white/30 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 dark:bg-luxury-dark-surface/30 dark:border-luxury-dark-border/20 h-12">
           <div className="flex items-center justify-between h-full">
             {/* Logo/Brand */}
-            <Link to="/" className="font-['Playfair_Display'] text-base font-semibold text-[#22223b]">
+            <Link to="/" className="font-['Playfair_Display'] text-base font-semibold text-primary-900 dark:text-luxury-dark-text">
               Luxury
             </Link>
 
-            {/* Auth Buttons + Menu Toggle with increased spacing */}
+            {/* Theme Toggle, Auth Buttons + Menu Toggle with increased spacing */}
             <div className="flex items-center gap-3">
-                             <Link to="/login" className="font-['Inter'] font-medium text-xs text-[#9a8c98] hover:text-[#22223b] transition-all duration-300 px-2">
-                 Login
-               </Link>
-                             <Link to="/signup" className="px-3 py-1 bg-[#d8b4a0] text-white rounded-full font-['Inter'] font-medium text-xs hover:bg-[#c9ada7] hover:shadow-md transition-all duration-300 whitespace-nowrap">
-                 Sign Up
-               </Link>
-              <div className="w-px h-4 bg-white/30 mx-1"></div>
+              {/* Theme Toggle */}
+              <ThemeToggle size="sm" />
+              
+              {isAuthenticated ? (
+                <button
+                  onClick={handleProfileClick}
+                  className="flex items-center gap-2 px-2 py-1 rounded-full hover:bg-white/40 dark:hover:bg-luxury-dark-surfaceHover/40 transition-all duration-300"
+                >
+                  <img
+                    src={user?.avatar}
+                    alt={`${user?.firstName} ${user?.lastName}`}
+                    className="w-6 h-6 rounded-full border border-white/50 dark:border-luxury-dark-border/50"
+                  />
+                  <span className="font-['Inter'] font-medium text-xs text-primary-500 dark:text-luxury-dark-textSecondary">
+                    {user?.firstName}
+                  </span>
+                </button>
+              ) : (
+                <>
+                  <Link to="/login" className="font-['Inter'] font-medium text-xs text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-900 dark:hover:text-luxury-dark-text transition-all duration-300 px-2">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="px-3 py-1 bg-primary-300 dark:bg-luxury-dark-accent text-white rounded-full font-['Inter'] font-medium text-xs hover:bg-primary-400 dark:hover:bg-luxury-dark-accentHover hover:shadow-md transition-all duration-300 whitespace-nowrap">
+                    Sign Up
+                  </Link>
+                </>
+              )}
+              <div className="w-px h-4 bg-white/30 dark:bg-luxury-dark-border/30 mx-1"></div>
               <button
                 onClick={toggleMobileMenu}
-                className="p-1.5 rounded-full hover:bg-white/40 transition-all duration-300"
+                className="p-1.5 rounded-full hover:bg-white/40 dark:hover:bg-luxury-dark-surfaceHover/40 transition-all duration-300"
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-4 h-4 text-[#22223b]" />
+                  <X className="w-4 h-4 text-primary-900 dark:text-luxury-dark-text" />
                 ) : (
-                  <Menu className="w-4 h-4 text-[#22223b]" />
+                  <Menu className="w-4 h-4 text-primary-900 dark:text-luxury-dark-text" />
                 )}
               </button>
             </div>
@@ -200,7 +252,7 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[90] lg:hidden">
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={toggleMobileMenu}></div>
-          <div className="absolute top-20 left-4 right-4 bg-white/90 backdrop-blur-md rounded-3xl shadow-xl border border-white/30 p-6">
+          <div className="absolute top-20 left-4 right-4 bg-white/90 dark:bg-luxury-dark-surface/90 backdrop-blur-md rounded-3xl shadow-xl border border-white/30 dark:border-luxury-dark-border/30 p-6">
             <div className="space-y-4">
               {navItems.map(({ path, label }) => (
                 <Link
@@ -209,8 +261,8 @@ export default function Navbar() {
                   onClick={toggleMobileMenu}
                   className={`block px-4 py-3 rounded-2xl transition-all duration-300 font-['Inter'] font-medium ${
                     location.pathname === path 
-                      ? 'bg-[#c9ada7]/20 text-[#22223b]' 
-                      : 'text-[#9a8c98] hover:text-[#22223b] hover:bg-white/60'
+                      ? 'bg-primary-400/20 dark:bg-luxury-dark-accent/20 text-primary-900 dark:text-luxury-dark-text' 
+                      : 'text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-900 dark:hover:text-luxury-dark-text hover:bg-white/60 dark:hover:bg-luxury-dark-surfaceHover/60'
                   }`}
                 >
                   {label}
@@ -220,6 +272,12 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      {/* Profile Modal */}
+      <ProfileModal 
+        isOpen={isProfileModalOpen} 
+        onClose={() => setIsProfileModalOpen(false)} 
+      />
     </>
   );
 }

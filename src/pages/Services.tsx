@@ -74,12 +74,12 @@ export default function Services() {
     <div className="pt-16">
       {/* Hero Section */}
       <section className="py-16 sm:py-20 flex items-center justify-center px-4 sm:px-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#c9ada7]/5 via-transparent to-[#9a8c98]/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-400/5 dark:from-luxury-dark-accent/5 via-transparent to-primary-500/5 dark:to-luxury-dark-primary/5"></div>
         <div className="text-center max-w-4xl mx-auto relative z-10">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-['Playfair_Display'] text-[#22223b] mb-4 sm:mb-6">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-4 sm:mb-6">
             Our Services
           </h1>
-          <p className="text-base sm:text-xl md:text-2xl text-[#9a8c98] font-['Inter'] max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
+          <p className="text-base sm:text-xl md:text-2xl text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
             Comprehensive luxury design and development services tailored for discerning brands and businesses.
           </p>
         </div>
@@ -96,18 +96,18 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <div key={index} className="group">
-                <div className="bg-white/40 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/30 hover:bg-white/60 transition-all duration-300 h-full">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#c9ada7]/20 rounded-full flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-[#c9ada7]/30 transition-colors duration-300">
-                    <div className="text-[#c9ada7]">
+                <div className="bg-white/40 dark:bg-luxury-dark-surface/40 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/30 dark:border-luxury-dark-border/30 hover:bg-white/60 dark:hover:bg-luxury-dark-surface/60 transition-all duration-300 h-full">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-400/20 dark:bg-luxury-dark-accent/20 rounded-full flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary-400/30 dark:group-hover:bg-luxury-dark-accent/30 transition-colors duration-300">
+                    <div className="text-primary-400 dark:text-luxury-dark-accent">
                       {service.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-['Playfair_Display'] text-[#22223b] mb-3 sm:mb-4">{service.title}</h3>
-                  <p className="text-sm sm:text-base text-[#9a8c98] font-['Inter'] mb-4 sm:mb-6">{service.description}</p>
+                  <h3 className="text-xl sm:text-2xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-3 sm:mb-4">{service.title}</h3>
+                  <p className="text-sm sm:text-base text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] mb-4 sm:mb-6">{service.description}</p>
                   <ul className="space-y-1 sm:space-y-2">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm sm:text-base text-[#22223b] font-['Inter']">
-                        <div className="w-2 h-2 bg-[#c9ada7] rounded-full mr-3 flex-shrink-0"></div>
+                      <li key={featureIndex} className="flex items-center text-sm sm:text-base text-primary-900 dark:text-luxury-dark-text font-['Inter']">
+                        <div className="w-2 h-2 bg-primary-400 dark:bg-luxury-dark-accent rounded-full mr-3 flex-shrink-0"></div>
                         {feature}
                       </li>
                     ))}
@@ -120,7 +120,7 @@ export default function Services() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 px-6 bg-white/30 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-white/30 dark:bg-luxury-dark-surface/30 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             title="Why Choose Us"
@@ -130,10 +130,10 @@ export default function Services() {
           <div className="grid md:grid-cols-3 gap-8">
             {whyChooseUs.map((item, index) => (
               <div key={index} className="text-center">
-                <div className="bg-white/50 rounded-2xl p-8 backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
-                  <div className="text-4xl font-['Playfair_Display'] text-[#c9ada7] mb-4">{item.stat}</div>
-                  <h3 className="text-xl font-['Playfair_Display'] text-[#22223b] mb-4">{item.title}</h3>
-                  <p className="text-[#9a8c98] font-['Inter']">{item.description}</p>
+                <div className="bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-2xl p-8 backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-105 transition-transform duration-300">
+                  <div className="text-4xl font-['Playfair_Display'] text-primary-400 dark:text-luxury-dark-accent mb-4">{item.stat}</div>
+                  <h3 className="text-xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-4">{item.title}</h3>
+                  <p className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter']">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -151,21 +151,21 @@ export default function Services() {
           />
           <div className="space-y-3 sm:space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white/40 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/30 overflow-hidden">
+              <div key={index} className="bg-white/40 dark:bg-luxury-dark-surface/40 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/30 dark:border-luxury-dark-border/30 overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex items-center justify-between hover:bg-white/20 transition-colors duration-300"
+                  className="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex items-center justify-between hover:bg-white/20 dark:hover:bg-luxury-dark-surfaceHover/20 transition-colors duration-300"
                 >
-                  <span className="font-['Playfair_Display'] text-base sm:text-lg text-[#22223b] pr-4">{faq.question}</span>
+                  <span className="font-['Playfair_Display'] text-base sm:text-lg text-primary-900 dark:text-luxury-dark-text pr-4">{faq.question}</span>
                   {openFaq === index ? (
-                    <Minus className="w-4 h-4 sm:w-5 sm:h-5 text-[#c9ada7] flex-shrink-0" />
+                    <Minus className="w-4 h-4 sm:w-5 sm:h-5 text-primary-400 dark:text-luxury-dark-accent flex-shrink-0" />
                   ) : (
-                    <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-[#c9ada7] flex-shrink-0" />
+                    <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-primary-400 dark:text-luxury-dark-accent flex-shrink-0" />
                   )}
                 </button>
                 {openFaq === index && (
                   <div className="px-4 sm:px-6 pb-3 sm:pb-4">
-                    <p className="text-sm sm:text-base text-[#9a8c98] font-['Inter']">{faq.answer}</p>
+                    <p className="text-sm sm:text-base text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter']">{faq.answer}</p>
                   </div>
                 )}
               </div>
@@ -177,11 +177,11 @@ export default function Services() {
       {/* CTA Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-[#c9ada7]/10 to-[#9a8c98]/10 rounded-2xl sm:rounded-full p-8 sm:p-16 backdrop-blur-sm border border-white/30">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-['Playfair_Display'] text-[#22223b] mb-4 sm:mb-6">
+          <div className="bg-gradient-to-br from-primary-400/10 dark:from-luxury-dark-accent/10 to-primary-500/10 dark:to-luxury-dark-primary/10 rounded-2xl sm:rounded-full p-8 sm:p-16 backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-4 sm:mb-6">
               Book a Discovery Call
             </h2>
-            <p className="text-base sm:text-xl text-[#9a8c98] mb-6 sm:mb-8 font-['Inter'] px-4">
+            <p className="text-base sm:text-xl text-primary-500 dark:text-luxury-dark-textSecondary mb-6 sm:mb-8 font-['Inter'] px-4">
               Let's discuss your project and explore how we can bring your vision to life.
             </p>
             <Button size="sm" className="sm:size-lg">

@@ -75,7 +75,7 @@ export default function Home() {
         {/* Hero Grid Background - Starts from very top */}
         <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 z-[-1] w-full h-full">
           {/* Gradient overlay */}
-          <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#fefcfb] via-[#f3f0ee] to-[#e8e4e2]"></div>
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 dark:from-luxury-dark-bg dark:via-luxury-dark-surface dark:to-luxury-dark-surface"></div>
           
           {/* Grid Pattern */}
           <div className="absolute inset-0 w-full h-full opacity-30 animate-grid-pulse">
@@ -114,11 +114,11 @@ export default function Home() {
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10 pt-20">
-          <h1 className="text-6xl md:text-8xl font-['Playfair_Display'] text-[#22223b] mb-6 leading-tight">
+          <h1 className="text-6xl md:text-8xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-6 leading-tight">
             Luxury
-            <span className="block text-[#c9ada7]">Redefined</span>
+            <span className="block text-primary-400 dark:text-luxury-dark-accent">Redefined</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#9a8c98] mb-8 font-['Inter'] max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-primary-500 dark:text-luxury-dark-textSecondary mb-8 font-['Inter'] max-w-2xl mx-auto">
             Where elegance meets innovation. We craft extraordinary experiences for discerning clients who demand nothing but perfection.
           </p>
           <Button size="lg" className="group shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
@@ -131,15 +131,15 @@ export default function Home() {
       {/* Trusted By Section */}
       <section className="py-16 px-6 overflow-hidden">
         <div className="text-center mb-12">
-          <p className="text-[#9a8c98] font-['Inter'] text-lg">Trusted by industry leaders</p>
+          <p className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-lg">Trusted by industry leaders</p>
         </div>
         <div className="relative">
                      {/* First row - moving left */}
            <div className="flex animate-marquee-left space-x-12 mb-8">
              {[...trustedBrands, ...trustedBrands, ...trustedBrands, ...trustedBrands].map((brand, index) => (
                <div key={`left-${index}`} className="flex-shrink-0">
-                 <div className="w-24 h-24 bg-white/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 hover:scale-110 transition-transform duration-300">
-                   <span className="text-[#9a8c98] font-['Inter'] text-sm font-medium">{brand}</span>
+                 <div className="w-24 h-24 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-110 transition-transform duration-300">
+                   <span className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-sm font-medium">{brand}</span>
                  </div>
                </div>
              ))}
@@ -149,8 +149,8 @@ export default function Home() {
            <div className="flex animate-marquee-right space-x-12">
              {[...trustedBrands, ...trustedBrands, ...trustedBrands, ...trustedBrands].map((brand, index) => (
                <div key={`right-${index}`} className="flex-shrink-0">
-                 <div className="w-24 h-24 bg-white/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 hover:scale-110 transition-transform duration-300">
-                   <span className="text-[#9a8c98] font-['Inter'] text-sm font-medium">{brand}</span>
+                 <div className="w-24 h-24 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-110 transition-transform duration-300">
+                   <span className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-sm font-medium">{brand}</span>
                  </div>
                </div>
              ))}
@@ -163,9 +163,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-[#c9ada7]/20 to-[#9a8c98]/20 rounded-3xl overflow-hidden">
-                <div className="w-full h-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                  <Sparkles className="w-24 h-24 text-[#c9ada7]" />
+              <div className="aspect-square bg-gradient-to-br from-primary-400/20 dark:from-luxury-dark-accent/20 to-primary-500/20 dark:to-luxury-dark-primary/20 rounded-3xl overflow-hidden">
+                <div className="w-full h-full bg-white/30 dark:bg-luxury-dark-surfaceHover/30 backdrop-blur-sm flex items-center justify-center">
+                  <Sparkles className="w-24 h-24 text-primary-400 dark:text-luxury-dark-accent" />
                 </div>
               </div>
             </div>
@@ -176,22 +176,22 @@ export default function Home() {
               />
               <div className="space-y-6 mb-8">
                 <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-[#c9ada7] rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary-400 dark:bg-luxury-dark-accent rounded-full flex items-center justify-center">
                     <Star className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-[#22223b] font-['Inter']">Award-winning design team</span>
+                  <span className="text-primary-900 dark:text-luxury-dark-text font-['Inter']">Award-winning design team</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-[#c9ada7] rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary-400 dark:bg-luxury-dark-accent rounded-full flex items-center justify-center">
                     <Users className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-[#22223b] font-['Inter']">500+ satisfied clients worldwide</span>
+                  <span className="text-primary-900 dark:text-luxury-dark-text font-['Inter']">500+ satisfied clients worldwide</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-[#c9ada7] rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary-400 dark:bg-luxury-dark-accent rounded-full flex items-center justify-center">
                     <Award className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-[#22223b] font-['Inter']">Industry recognition and accolades</span>
+                  <span className="text-primary-900 dark:text-luxury-dark-text font-['Inter']">Industry recognition and accolades</span>
                 </div>
               </div>
               <Button variant="outline" className="group">
@@ -204,37 +204,37 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6 bg-white/30 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-white/30 dark:bg-luxury-dark-surface/30 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             {/* Projects Completed */}
             <div className="text-center" ref={projectsCount.ref}>
-              <div className="w-32 h-32 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
-                <span className="text-3xl font-['Playfair_Display'] text-[#22223b]">
+              <div className="w-32 h-32 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-105 transition-transform duration-300">
+                <span className="text-3xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text">
                   {projectsCount.count}+
                 </span>
               </div>
-              <p className="text-[#9a8c98] font-['Inter'] text-lg">Projects Completed</p>
+              <p className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-lg">Projects Completed</p>
             </div>
 
             {/* Client Satisfaction */}
             <div className="text-center" ref={satisfactionCount.ref}>
-              <div className="w-32 h-32 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
-                <span className="text-3xl font-['Playfair_Display'] text-[#22223b]">
+              <div className="w-32 h-32 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-105 transition-transform duration-300">
+                <span className="text-3xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text">
                   {satisfactionCount.count}%
                 </span>
               </div>
-              <p className="text-[#9a8c98] font-['Inter'] text-lg">Client Satisfaction</p>
+              <p className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-lg">Client Satisfaction</p>
             </div>
 
             {/* Years of Excellence */}
             <div className="text-center" ref={yearsCount.ref}>
-              <div className="w-32 h-32 bg-white/50 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/30 hover:scale-105 transition-transform duration-300">
-                <span className="text-3xl font-['Playfair_Display'] text-[#22223b]">
+              <div className="w-32 h-32 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-105 transition-transform duration-300">
+                <span className="text-3xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text">
                   {yearsCount.count}+
                 </span>
               </div>
-              <p className="text-[#9a8c98] font-['Inter'] text-lg">Years of Excellence</p>
+              <p className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-lg">Years of Excellence</p>
             </div>
           </div>
         </div>
@@ -243,11 +243,11 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-['Playfair_Display'] text-[#22223b] mb-6">
+          <h2 className="text-4xl md:text-6xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-6">
             Ready to Create Something
-            <span className="block text-[#c9ada7]">Extraordinary?</span>
+            <span className="block text-primary-400 dark:text-luxury-dark-accent">Extraordinary?</span>
           </h2>
-          <p className="text-xl text-[#9a8c98] mb-8 font-['Inter']">
+          <p className="text-xl text-primary-500 dark:text-luxury-dark-textSecondary mb-8 font-['Inter']">
             Let's discuss your vision and bring it to life with our expertise and passion for excellence.
           </p>
           <Button size="lg" className="group">

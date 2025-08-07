@@ -53,35 +53,35 @@ export default function Contact() {
        <section className="py-20 flex items-center justify-center px-6 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-[#c9ada7]/10 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-24 h-24 bg-[#9a8c98]/10 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#c9ada7]/5 rounded-full animate-bounce delay-500"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-primary-400/10 dark:bg-luxury-dark-accent/10 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-24 h-24 bg-primary-500/10 dark:bg-luxury-dark-primary/10 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-primary-400/5 dark:bg-luxury-dark-accent/5 rounded-full animate-bounce delay-500"></div>
         </div>
         
                  <div className="text-center max-w-4xl mx-auto relative z-10">
            <div className="mb-4">
              {/* Animated title with gradient and effects */}
              <h1 className="text-6xl md:text-8xl font-['Playfair_Display'] mb-4 relative">
-              <span className="inline-block animate-fade-in-up bg-gradient-to-r from-[#22223b] via-[#c9ada7] to-[#9a8c98] bg-clip-text text-transparent bg-size-200 animate-gradient-x">
+              <span className="inline-block animate-fade-in-up bg-gradient-to-r from-primary-900 dark:from-luxury-dark-text via-primary-400 dark:via-luxury-dark-accent to-primary-500 dark:to-luxury-dark-primary bg-clip-text text-transparent bg-size-200 animate-gradient-x">
                 Let's
               </span>
               <br />
-              <span className="inline-block animate-fade-in-up delay-300 bg-gradient-to-r from-[#c9ada7] via-[#9a8c98] to-[#22223b] bg-clip-text text-transparent bg-size-200 animate-gradient-x">
+              <span className="inline-block animate-fade-in-up delay-300 bg-gradient-to-r from-primary-400 dark:from-luxury-dark-accent via-primary-500 dark:via-luxury-dark-primary to-primary-900 dark:to-luxury-dark-text bg-clip-text text-transparent bg-size-200 animate-gradient-x">
                 Talk
               </span>
               
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#c9ada7]/20 rounded-full animate-ping"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#9a8c98]/30 rounded-full animate-pulse delay-700"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary-400/20 dark:bg-luxury-dark-accent/20 rounded-full animate-ping"></div>
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-primary-500/30 dark:bg-luxury-dark-primary/30 rounded-full animate-pulse delay-700"></div>
             </h1>
             
                          {/* Animated underline */}
              <div className="flex justify-center mb-4">
-               <div className="w-0 h-1 bg-gradient-to-r from-[#c9ada7] to-[#9a8c98] rounded-full animate-expand-width"></div>
+               <div className="w-0 h-1 bg-gradient-to-r from-primary-400 dark:from-luxury-dark-accent to-primary-500 dark:to-luxury-dark-primary rounded-full animate-expand-width"></div>
              </div>
           </div>
           
-          <p className="text-xl md:text-2xl text-[#9a8c98] font-['Inter'] max-w-3xl mx-auto animate-fade-in-up delay-600">
+          <p className="text-xl md:text-2xl text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] max-w-3xl mx-auto animate-fade-in-up delay-600">
             Ready to create something extraordinary? We'd love to hear about your project and explore how we can bring your vision to life.
           </p>
         </div>
@@ -98,10 +98,10 @@ export default function Contact() {
                 subtitle="Tell us about your project and we'll get back to you within 24 hours"
               />
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-white/30">
+                <div className="bg-white/40 dark:bg-luxury-dark-surface/40 backdrop-blur-sm rounded-2xl p-8 border border-white/30 dark:border-luxury-dark-border/30">
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="name" className="block text-[#22223b] font-['Inter'] mb-2">
+                      <label htmlFor="name" className="block text-primary-900 dark:text-luxury-dark-text font-['Inter'] mb-2">
                         Full Name *
                       </label>
                       <input
@@ -111,12 +111,12 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-full focus:outline-none focus:ring-2 focus:ring-[#c9ada7] font-['Inter']"
+                        className="w-full px-4 py-3 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 border border-white/30 dark:border-luxury-dark-border/30 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent font-['Inter'] text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-[#22223b] font-['Inter'] mb-2">
+                      <label htmlFor="email" className="block text-primary-900 dark:text-luxury-dark-text font-['Inter'] mb-2">
                         Email Address *
                       </label>
                       <input
@@ -126,13 +126,13 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-full focus:outline-none focus:ring-2 focus:ring-[#c9ada7] font-['Inter']"
+                        className="w-full px-4 py-3 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 border border-white/30 dark:border-luxury-dark-border/30 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent font-['Inter'] text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary"
                         placeholder="your@email.com"
                       />
                     </div>
                   </div>
                   <div className="mb-6">
-                    <label htmlFor="company" className="block text-[#22223b] font-['Inter'] mb-2">
+                    <label htmlFor="company" className="block text-primary-900 dark:text-luxury-dark-text font-['Inter'] mb-2">
                       Company
                     </label>
                     <input
@@ -141,12 +141,12 @@ export default function Contact() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-full focus:outline-none focus:ring-2 focus:ring-[#c9ada7] font-['Inter']"
+                      className="w-full px-4 py-3 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 border border-white/30 dark:border-luxury-dark-border/30 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent font-['Inter'] text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary"
                       placeholder="Your company"
                     />
                   </div>
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-[#22223b] font-['Inter'] mb-2">
+                    <label htmlFor="message" className="block text-primary-900 dark:text-luxury-dark-text font-['Inter'] mb-2">
                       Project Details *
                     </label>
                     <textarea
@@ -156,7 +156,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9ada7] font-['Inter'] resize-none"
+                      className="w-full px-4 py-3 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 border border-white/30 dark:border-luxury-dark-border/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent font-['Inter'] resize-none text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary"
                       placeholder="Tell us about your project, goals, and timeline..."
                     />
                   </div>
@@ -180,16 +180,16 @@ export default function Contact() {
                     <a
                       key={index}
                       href={info.link}
-                      className="flex items-center space-x-4 p-4 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/30 hover:bg-white/60 transition-all duration-300 group"
+                      className="flex items-center space-x-4 p-4 bg-white/40 dark:bg-luxury-dark-surface/40 backdrop-blur-sm rounded-2xl border border-white/30 dark:border-luxury-dark-border/30 hover:bg-white/60 dark:hover:bg-luxury-dark-surface/60 transition-all duration-300 group"
                     >
-                      <div className="w-12 h-12 bg-[#c9ada7]/20 rounded-full flex items-center justify-center group-hover:bg-[#c9ada7]/30 transition-colors duration-300">
-                        <div className="text-[#c9ada7]">
+                      <div className="w-12 h-12 bg-primary-400/20 dark:bg-luxury-dark-accent/20 rounded-full flex items-center justify-center group-hover:bg-primary-400/30 dark:group-hover:bg-luxury-dark-accent/30 transition-colors duration-300">
+                        <div className="text-primary-400 dark:text-luxury-dark-accent">
                           {info.icon}
                         </div>
                       </div>
                       <div>
-                        <h3 className="font-['Playfair_Display'] text-[#22223b] text-lg">{info.title}</h3>
-                        <p className="text-[#9a8c98] font-['Inter']">{info.details}</p>
+                        <h3 className="font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text text-lg">{info.title}</h3>
+                        <p className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter']">{info.details}</p>
                       </div>
                     </a>
                   ))}
@@ -197,10 +197,10 @@ export default function Contact() {
               </div>
 
               {/* Map */}
-              <div className="bg-white/40 backdrop-blur-sm rounded-3xl p-8 border border-white/30">
-                <h3 className="font-['Playfair_Display'] text-[#22223b] text-xl mb-4">Our Locations</h3>
-                <div className="aspect-square bg-gradient-to-br from-[#c9ada7]/20 to-[#9a8c98]/20 rounded-2xl flex items-center justify-center">
-                  <MapPin className="w-16 h-16 text-[#c9ada7]" />
+              <div className="bg-white/40 dark:bg-luxury-dark-surface/40 backdrop-blur-sm rounded-3xl p-8 border border-white/30 dark:border-luxury-dark-border/30">
+                <h3 className="font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text text-xl mb-4">Our Locations</h3>
+                <div className="aspect-square bg-gradient-to-br from-primary-400/20 dark:from-luxury-dark-accent/20 to-primary-500/20 dark:to-luxury-dark-primary/20 rounded-2xl flex items-center justify-center">
+                  <MapPin className="w-16 h-16 text-primary-400 dark:text-luxury-dark-accent" />
                 </div>
               </div>
 
@@ -212,18 +212,18 @@ export default function Contact() {
 
       {/* Floating Chat Button */}
       <div className="fixed bottom-6 right-6 z-40">
-        <button className="w-16 h-16 bg-[#c9ada7] rounded-full flex items-center justify-center text-white shadow-lg hover:bg-[#dec5c5] transition-all duration-300 hover:scale-110">
+        <button className="w-16 h-16 bg-primary-400 dark:bg-luxury-dark-accent rounded-full flex items-center justify-center text-white shadow-lg hover:bg-primary-500 dark:hover:bg-luxury-dark-accentHover transition-all duration-300 hover:scale-110">
           <MessageCircle className="w-6 h-6" />
         </button>
       </div>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-white/30 backdrop-blur-sm">
+      <section className="py-20 px-6 bg-white/30 dark:bg-luxury-dark-surface/30 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-[#22223b] mb-6">
+          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-6">
             Ready to Begin?
           </h2>
-          <p className="text-xl text-[#9a8c98] mb-8 font-['Inter']">
+          <p className="text-xl text-primary-500 dark:text-luxury-dark-textSecondary mb-8 font-['Inter']">
             Every great project starts with a conversation. Let's make yours extraordinary.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base styles with theme support */
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,6 +15,12 @@ body {
   background: linear-gradient(135deg, #fefcfb 0%, #f3f0ee 50%, #e8e4e2 100%);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Dark mode body background */
+.dark body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
 }
 
 code {
@@ -21,22 +28,37 @@ code {
     monospace;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar with theme support */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: #f3f0ee;
+  transition: background 0.3s ease-in-out;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #c9ada7;
   border-radius: 4px;
+  transition: background 0.3s ease-in-out;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #9a8c98;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #9a8c98;
+  transition: background 0.3s ease-in-out;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #8a7c88;
 }
 
 /* Marquee animation */
@@ -53,7 +75,7 @@ code {
   animation: marquee 30s linear infinite;
 }
 
-/* Enhanced Grid background animations with maximum visibility */
+/* Enhanced Grid background animations */
 @keyframes gridPulse {
   0% {
     opacity: 0.7;
@@ -64,6 +86,20 @@ code {
     opacity: 1;
     transform: scale(1.02);
     filter: drop-shadow(0 0 20px rgba(216, 180, 160, 1));
+  }
+}
+
+/* Dark mode grid animations */
+@keyframes gridPulseDark {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(154, 140, 152, 0.6));
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 20px rgba(154, 140, 152, 0.8));
   }
 }
 
@@ -78,6 +114,18 @@ code {
   }
 }
 
+/* Dark mode grid glow */
+@keyframes gridGlowDark {
+  0% {
+    opacity: 0.3;
+    filter: blur(1px) drop-shadow(0 0 10px rgba(154, 140, 152, 0.6)) drop-shadow(0 0 20px rgba(154, 140, 152, 0.3));
+  }
+  100% {
+    opacity: 0.7;
+    filter: blur(2px) drop-shadow(0 0 25px rgba(154, 140, 152, 0.9)) drop-shadow(0 0 40px rgba(154, 140, 152, 0.4));
+  }
+}
+
 @keyframes dotPulse {
   0%, 100% {
     opacity: 0.6;
@@ -88,6 +136,20 @@ code {
     opacity: 1;
     transform: scale(1.4);
     filter: drop-shadow(0 0 15px rgba(216, 180, 160, 1)) drop-shadow(0 0 25px rgba(216, 180, 160, 0.6));
+  }
+}
+
+/* Dark mode dot pulse */
+@keyframes dotPulseDark {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(154, 140, 152, 0.6));
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.4);
+    filter: drop-shadow(0 0 15px rgba(154, 140, 152, 0.8)) drop-shadow(0 0 25px rgba(154, 140, 152, 0.4));
   }
 }
 
@@ -192,11 +254,17 @@ code {
   animation-delay: 1s;
 }
 
-/* Glassmorphism effects */
+/* Glassmorphism effects with theme support */
 .glass {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.3s ease-in-out;
+}
+
+.dark .glass {
+  background: rgba(26, 26, 26, 0.25);
+  border: 1px solid rgba(51, 51, 51, 0.18);
 }
 
 /* Smooth transitions for all interactive elements */
@@ -204,11 +272,15 @@ button, a, input, textarea {
   transition: all 0.3s ease;
 }
 
-/* Focus styles */
+/* Focus styles with theme support */
 input:focus, textarea:focus {
   outline: none;
   ring: 2px;
   ring-color: #c9ada7;
+}
+
+.dark input:focus, .dark textarea:focus {
+  ring-color: #9a8c98;
 }
 
 /* Custom button hover effects */
@@ -228,6 +300,10 @@ input:focus, textarea:focus {
   transition: left 0.5s;
 }
 
+.dark .btn-hover::before {
+  background: linear-gradient(90deg, transparent, rgba(154, 140, 152, 0.2), transparent);
+}
+
 .btn-hover:hover::before {
   left: 100%;
 }
@@ -240,44 +316,6 @@ input:focus, textarea:focus {
   
   h2 {
     font-size: 2.5rem;
-  }
-  
-  /* Maintain grid visibility on mobile with reduced intensity */
-  @keyframes gridPulse {
-    0% {
-      opacity: 0.5;
-      transform: scale(1);
-      filter: drop-shadow(0 0 6px rgba(216, 180, 160, 0.6));
-    }
-    100% {
-      opacity: 0.8;
-      transform: scale(1.01);
-      filter: drop-shadow(0 0 12px rgba(216, 180, 160, 0.8));
-    }
-  }
-  
-  @keyframes gridGlow {
-    0% {
-      opacity: 0.4;
-      filter: blur(1px) drop-shadow(0 0 6px rgba(216, 180, 160, 0.6));
-    }
-    100% {
-      opacity: 0.7;
-      filter: blur(1.5px) drop-shadow(0 0 15px rgba(216, 180, 160, 0.9));
-    }
-  }
-  
-  @keyframes dotPulse {
-    0%, 100% {
-      opacity: 0.4;
-      transform: scale(1);
-      filter: drop-shadow(0 0 4px rgba(216, 180, 160, 0.5));
-    }
-    50% {
-      opacity: 0.8;
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 10px rgba(216, 180, 160, 0.8));
-    }
   }
 }
 
@@ -294,17 +332,31 @@ input:focus, textarea:focus {
   animation-delay: 0.3s;
 }
 
-/* Gradient text effect */
+/* Gradient text effect with theme support */
 .gradient-text {
   background: linear-gradient(135deg, #c9ada7, #9a8c98);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Custom selection color */
+.dark .gradient-text {
+  background: linear-gradient(135deg, #9a8c98, #d8b4a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom selection color with theme support */
 ::selection {
   background: #c9ada7;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark ::selection {
+  background: #9a8c98;
   color: white;
 }
 
@@ -319,7 +371,7 @@ input:focus, textarea:focus {
   pointer-events: none;
 }
 
-/* Hover effects for cards */
+/* Hover effects for cards with theme support */
 .card-hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -327,6 +379,10 @@ input:focus, textarea:focus {
 .card-hover:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(201, 173, 167, 0.15);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 20px 40px rgba(154, 140, 152, 0.15);
 }
 
 /* Custom backdrop blur for better browser support */
@@ -341,6 +397,12 @@ input:focus, textarea:focus {
   -webkit-backdrop-filter: blur(12px);
   background: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.dark .navbar-blur {
+  background: rgba(26, 26, 26, 0.3);
+  border: 1px solid rgba(51, 51, 51, 0.2);
 }
 
 /* Mobile-first responsive design helpers */
@@ -369,42 +431,6 @@ input:focus, textarea:focus {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
-  /* Show static grid for reduced motion */
-  @keyframes gridPulse {
-    0%, 100% {
-      opacity: 0.8;
-      transform: scale(1);
-      filter: drop-shadow(0 0 10px rgba(216, 180, 160, 0.8));
-    }
-  }
-  
-  @keyframes gridGlow {
-    0%, 100% {
-      opacity: 0.6;
-      filter: blur(1px) drop-shadow(0 0 10px rgba(216, 180, 160, 0.6));
-    }
-  }
-  
-  @keyframes dotPulse {
-    0%, 100% {
-      opacity: 0.7;
-      transform: scale(1);
-      filter: drop-shadow(0 0 6px rgba(216, 180, 160, 0.7));
-    }
-  }
-  
-  @keyframes scanLine {
-    0%, 100% {
-      background-position: 0% 0;
-    }
-  }
-  
-  @keyframes scanLineVertical {
-    0%, 100% {
-      background-position: 0 0%;
-    }
-  }
 }
 
 /* High contrast mode support */
@@ -417,23 +443,37 @@ input:focus, textarea:focus {
     background-color: #fff;
     border: 2px solid #000;
   }
-}
-
-/* Dark mode preparation (if needed in future) */
-@media (prefers-color-scheme: dark) {
-  /* Dark mode styles would go here */
+  
+  .dark .text-muted {
+    color: #fff;
+  }
+  
+  .dark .bg-subtle {
+    background-color: #000;
+    border: 2px solid #fff;
+  }
 }
 
 /* Enhanced glow effects for better visibility */
 .glow-text {
   text-shadow: 0 0 10px rgba(216, 180, 160, 0.8);
+  transition: all 0.3s ease-in-out;
+}
+
+.dark .glow-text {
+  text-shadow: 0 0 10px rgba(154, 140, 152, 0.8);
 }
 
 .glow-border {
   box-shadow: 0 0 20px rgba(216, 180, 160, 0.6);
+  transition: all 0.3s ease-in-out;
 }
 
-/* Enhanced Cyberpunk-style grid */
+.dark .glow-border {
+  box-shadow: 0 0 20px rgba(154, 140, 152, 0.6);
+}
+
+/* Enhanced Cyberpunk-style grid with theme support */
 .cyber-grid {
   position: relative;
 }
@@ -447,6 +487,13 @@ input:focus, textarea:focus {
     linear-gradient(rgba(216, 180, 160, 0.1) 48px, rgba(216, 180, 160, 0.1) 49px, transparent 51px, transparent 52px);
   background-size: 50px 50px;
   animation: gridShift 20s linear infinite;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark .cyber-grid::before {
+  background: 
+    linear-gradient(90deg, transparent 48px, rgba(154, 140, 152, 0.1) 49px, rgba(154, 140, 152, 0.1) 51px, transparent 52px),
+    linear-gradient(rgba(154, 140, 152, 0.1) 48px, rgba(154, 140, 152, 0.1) 49px, transparent 51px, transparent 52px);
 }
 
 @keyframes gridShift {
@@ -484,6 +531,10 @@ input:focus, textarea:focus {
   .backdrop-blur-md {
     background: rgba(255, 255, 255, 0.8);
   }
+  
+  .dark .backdrop-blur-md {
+    background: rgba(26, 26, 26, 0.8);
+  }
 }
 
 /* Ensure grid is visible on all devices */
@@ -504,4 +555,36 @@ input:focus, textarea:focus {
   background-image: 
     radial-gradient(circle at 1px 1px, rgba(216, 180, 160, 0.5) 1px, transparent 0);
   background-size: 50px 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark .grid-fallback {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(154, 140, 152, 0.5) 1px, transparent 0);
+}
+
+/* Theme transition utilities */
+.theme-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.theme-transition-slow {
+  transition: all 0.5s ease-in-out;
+}
+
+/* Dark mode specific utilities */
+.dark-mode-text {
+  @apply text-luxury-dark-text;
+}
+
+.dark-mode-bg {
+  @apply bg-luxury-dark-bg;
+}
+
+.dark-mode-surface {
+  @apply bg-luxury-dark-surface;
+}
+
+.dark-mode-border {
+  @apply border-luxury-dark-border;
 }

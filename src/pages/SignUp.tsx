@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft, Eye, EyeOff, XCircle } from 'lucide-react';
 import Button from '../components/Button';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -11,11 +12,12 @@ export default function SignUp() {
     password: '',
     confirmPassword: ''
   });
-  
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+  const { signup } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,7 +25,6 @@ export default function SignUp() {
       ...prev,
       [name]: value
     }));
-    
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -44,16 +45,16 @@ export default function SignUp() {
       newErrors.lastName = 'Last name is required';
     }
 
-    if (!formData.email.trim()) {
+    if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = 'Email is invalid';
     }
 
     if (!formData.password) {
       newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters long';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
     }
 
     if (!formData.confirmPassword) {
@@ -74,25 +75,29 @@ export default function SignUp() {
     }
 
     setIsSubmitting(true);
-    
-    // Simulate API call
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      // Handle successful signup here
-      console.log('Sign up successful:', formData);
+      const success = await signup({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password
+      });
+      if (success) {
+        navigate('/');
+      } else {
+        setErrors({ general: 'Failed to create account. Please try again.' });
+      }
     } catch (error) {
       console.error('Sign up failed:', error);
+      setErrors({ general: 'Sign up failed. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const isFormValid = formData.firstName && formData.lastName && formData.email && 
-                     formData.password && formData.confirmPassword && 
-                     formData.password === formData.confirmPassword;
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#fefcfb] via-[#f3f0ee] to-[#e8e4e2] flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 dark:from-luxury-dark-bg dark:via-luxury-dark-surface dark:to-luxury-dark-surface flex items-center justify-center p-4">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 z-[-1]">
         <div className="absolute inset-0 opacity-20">
@@ -107,23 +112,23 @@ export default function SignUp() {
       </div>
 
       <div className="w-full max-w-md">
-        {/* Back to Home Link */}
-        <Link 
-          to="/" 
-          className="inline-flex items-center text-[#9a8c98] hover:text-[#22223b] transition-colors duration-300 mb-8 group"
+        {/* Back Button */}
+        <Link
+          to="/"
+          className="inline-flex items-center text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-900 dark:hover:text-luxury-dark-text transition-colors duration-300 mb-8 group"
         >
           <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
           Back to Home
         </Link>
 
         {/* Sign Up Form */}
-        <div className="bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-white/30">
+        <div className="bg-white/60 dark:bg-luxury-dark-surface/60 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-white/30 dark:border-luxury-dark-border/30">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-['Playfair_Display'] text-[#22223b] mb-2">
-              Join Luxury
+            <h1 className="text-3xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-2">
+              Create Account
             </h1>
-            <p className="text-[#9a8c98] font-['Inter']">
-              Create your account and unlock exclusive experiences
+            <p className="text-primary-600 dark:text-luxury-dark-textSecondary">
+              Join our luxury community
             </p>
           </div>
 
@@ -131,7 +136,7 @@ export default function SignUp() {
             {/* Name Fields */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-['Inter'] font-medium text-[#22223b] mb-2">
+                <label htmlFor="firstName" className="block text-sm font-medium text-primary-700 dark:text-luxury-dark-textSecondary mb-2">
                   First Name
                 </label>
                 <input
@@ -140,23 +145,23 @@ export default function SignUp() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-xl border transition-all duration-300 font-['Inter'] ${
+                  className={`w-full px-4 py-3 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 ${
                     errors.firstName 
-                      ? 'border-red-300 bg-red-50/50' 
-                      : 'border-white/30 bg-white/50 hover:bg-white/70 focus:bg-white/80'
-                  } focus:outline-none focus:ring-2 focus:ring-[#c9ada7]/30`}
-                  placeholder="Enter your first name"
+                      ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20 focus:ring-red-400 dark:focus:ring-red-500' 
+                      : 'border-white/30 dark:border-luxury-dark-border/30 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent'
+                  } text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary`}
+                  placeholder="First name"
                 />
                 {errors.firstName && (
-                  <div className="flex items-center mt-2 text-red-500 text-sm">
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
                     <XCircle className="w-4 h-4 mr-1" />
                     {errors.firstName}
-                  </div>
+                  </p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="lastName" className="block text-sm font-['Inter'] font-medium text-[#22223b] mb-2">
+                <label htmlFor="lastName" className="block text-sm font-medium text-primary-700 dark:text-luxury-dark-textSecondary mb-2">
                   Last Name
                 </label>
                 <input
@@ -165,25 +170,25 @@ export default function SignUp() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-xl border transition-all duration-300 font-['Inter'] ${
+                  className={`w-full px-4 py-3 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 ${
                     errors.lastName 
-                      ? 'border-red-300 bg-red-50/50' 
-                      : 'border-white/30 bg-white/50 hover:bg-white/70 focus:bg-white/80'
-                  } focus:outline-none focus:ring-2 focus:ring-[#c9ada7]/30`}
-                  placeholder="Enter your last name"
+                      ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20 focus:ring-red-400 dark:focus:ring-red-500' 
+                      : 'border-white/30 dark:border-luxury-dark-border/30 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent'
+                  } text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary`}
+                  placeholder="Last name"
                 />
                 {errors.lastName && (
-                  <div className="flex items-center mt-2 text-red-500 text-sm">
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
                     <XCircle className="w-4 h-4 mr-1" />
                     {errors.lastName}
-                  </div>
+                  </p>
                 )}
               </div>
             </div>
 
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-['Inter'] font-medium text-[#22223b] mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-primary-700 dark:text-luxury-dark-textSecondary mb-2">
                 Email Address
               </label>
               <input
@@ -192,24 +197,24 @@ export default function SignUp() {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 rounded-xl border transition-all duration-300 font-['Inter'] ${
+                className={`w-full px-4 py-3 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 ${
                   errors.email 
-                    ? 'border-red-300 bg-red-50/50' 
-                    : 'border-white/30 bg-white/50 hover:bg-white/70 focus:bg-white/80'
-                } focus:outline-none focus:ring-2 focus:ring-[#c9ada7]/30`}
-                placeholder="Enter your email address"
+                    ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20 focus:ring-red-400 dark:focus:ring-red-500' 
+                    : 'border-white/30 dark:border-luxury-dark-border/30 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent'
+                } text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary`}
+                placeholder="Enter your email"
               />
               {errors.email && (
-                <div className="flex items-center mt-2 text-red-500 text-sm">
+                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
                   <XCircle className="w-4 h-4 mr-1" />
                   {errors.email}
-                </div>
+                </p>
               )}
             </div>
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-['Inter'] font-medium text-[#22223b] mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-primary-700 dark:text-luxury-dark-textSecondary mb-2">
                 Password
               </label>
               <div className="relative">
@@ -219,32 +224,32 @@ export default function SignUp() {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 pr-12 rounded-xl border transition-all duration-300 font-['Inter'] ${
+                  className={`w-full px-4 py-3 pr-12 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 ${
                     errors.password 
-                      ? 'border-red-300 bg-red-50/50' 
-                      : 'border-white/30 bg-white/50 hover:bg-white/70 focus:bg-white/80'
-                  } focus:outline-none focus:ring-2 focus:ring-[#c9ada7]/30`}
+                      ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20 focus:ring-red-400 dark:focus:ring-red-500' 
+                      : 'border-white/30 dark:border-luxury-dark-border/30 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent'
+                  } text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary`}
                   placeholder="Create a password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#9a8c98] hover:text-[#22223b] transition-colors duration-300"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-700 dark:hover:text-luxury-dark-text transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
               {errors.password && (
-                <div className="flex items-center mt-2 text-red-500 text-sm">
+                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
                   <XCircle className="w-4 h-4 mr-1" />
                   {errors.password}
-                </div>
+                </p>
               )}
             </div>
 
             {/* Confirm Password Field */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-['Inter'] font-medium text-[#22223b] mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-primary-700 dark:text-luxury-dark-textSecondary mb-2">
                 Confirm Password
               </label>
               <div className="relative">
@@ -254,70 +259,70 @@ export default function SignUp() {
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 pr-12 rounded-xl border transition-all duration-300 font-['Inter'] ${
+                  className={`w-full px-4 py-3 pr-12 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 ${
                     errors.confirmPassword 
-                      ? 'border-red-300 bg-red-50/50' 
-                      : 'border-white/30 bg-white/50 hover:bg-white/70 focus:bg-white/80'
-                  } focus:outline-none focus:ring-2 focus:ring-[#c9ada7]/30`}
+                      ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20 focus:ring-red-400 dark:focus:ring-red-500' 
+                      : 'border-white/30 dark:border-luxury-dark-border/30 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent'
+                  } text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary`}
                   placeholder="Confirm your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#9a8c98] hover:text-[#22223b] transition-colors duration-300"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-700 dark:hover:text-luxury-dark-text transition-colors"
                 >
                   {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
               {errors.confirmPassword && (
-                <div className="flex items-center mt-2 text-red-500 text-sm">
+                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
                   <XCircle className="w-4 h-4 mr-1" />
                   {errors.confirmPassword}
-                </div>
+                </p>
               )}
             </div>
+
+            {/* General Error */}
+            {errors.general && (
+              <div className="flex items-center p-3 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-sm">
+                <XCircle className="w-4 h-4 mr-2" />
+                {errors.general}
+              </div>
+            )}
 
             {/* Submit Button */}
             <Button
               type="submit"
-              disabled={!isFormValid || isSubmitting}
-              className="w-full group"
-              size="lg"
+              disabled={isSubmitting}
+              className="w-full"
             >
-              {isSubmitting ? (
-                <div className="flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
-                  Creating Account...
-                </div>
-              ) : (
-                'Create Account'
-              )}
+              {isSubmitting ? 'Creating Account...' : 'Create Account'}
             </Button>
           </form>
 
-          {/* Login Link */}
-          <div className="text-center mt-6">
-            <p className="text-[#9a8c98] font-['Inter']">
-              Already have an account?{' '}
-              <Link 
-                to="/login" 
-                className="text-[#c9ada7] hover:text-[#22223b] font-medium transition-colors duration-300"
-              >
-                Sign in here
-              </Link>
-            </p>
-          </div>
-
           {/* Terms and Privacy */}
-          <div className="text-center mt-6">
-            <p className="text-xs text-[#9a8c98] font-['Inter']">
-              By creating an account, you agree to our{' '}
-              <Link to="/terms" className="text-[#c9ada7] hover:text-[#22223b] transition-colors duration-300">
-                Terms of Service
-              </Link>{' '}
-              and{' '}
-              <Link to="/privacy" className="text-[#c9ada7] hover:text-[#22223b] transition-colors duration-300">
-                Privacy Policy
+                      <div className="text-center mt-6">
+              <p className="text-xs text-primary-500 dark:text-luxury-dark-textSecondary">
+                By creating an account, you agree to our{' '}
+                <button className="text-primary-900 dark:text-luxury-dark-text hover:text-primary-700 dark:hover:text-luxury-dark-accent underline bg-transparent border-none p-0 cursor-pointer">
+                  Terms of Service
+                </button>{' '}
+                and{' '}
+                <button className="text-primary-900 dark:text-luxury-dark-text hover:text-primary-700 dark:hover:text-luxury-dark-accent underline bg-transparent border-none p-0 cursor-pointer">
+                  Privacy Policy
+                </button>
+              </p>
+            </div>
+
+          {/* Sign In Link */}
+          <div className="text-center mt-8 pt-6 border-t border-white/30 dark:border-luxury-dark-border/30">
+            <p className="text-primary-600 dark:text-luxury-dark-textSecondary text-sm">
+              Already have an account?{' '}
+              <Link
+                to="/login"
+                className="text-primary-900 dark:text-luxury-dark-text hover:text-primary-700 dark:hover:text-luxury-dark-accent font-medium transition-colors"
+              >
+                Sign in
               </Link>
             </p>
           </div>

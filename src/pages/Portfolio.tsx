@@ -87,10 +87,10 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section className="py-16 sm:py-20 flex items-center justify-center px-4 sm:px-6">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-['Playfair_Display'] text-[#22223b] mb-4 sm:mb-6">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-4 sm:mb-6">
             Our Work
           </h1>
-          <p className="text-base sm:text-xl md:text-2xl text-[#9a8c98] font-['Inter'] max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-xl md:text-2xl text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] max-w-3xl mx-auto px-4">
             A curated collection of our finest projects, showcasing the intersection of luxury design and innovative technology.
           </p>
         </div>
@@ -106,8 +106,8 @@ export default function Portfolio() {
                 onClick={() => setActiveFilter(filter)}
                 className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-['Inter'] text-sm sm:text-base transition-all duration-300 ${
                   activeFilter === filter
-                    ? 'bg-[#c9ada7] text-white shadow-lg'
-                    : 'bg-white/40 text-[#9a8c98] hover:bg-white/60 backdrop-blur-sm border border-white/30'
+                    ? 'bg-primary-400 dark:bg-luxury-dark-accent text-white shadow-lg'
+                    : 'bg-white/40 dark:bg-luxury-dark-surface/40 text-primary-500 dark:text-luxury-dark-textSecondary hover:bg-white/60 dark:hover:bg-luxury-dark-surface/60 backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30'
                 }`}
               >
                 {filter}
@@ -127,19 +127,19 @@ export default function Portfolio() {
                 className="group cursor-pointer"
                 onClick={() => setSelectedProject(project.id)}
               >
-                <div className="bg-white/40 backdrop-blur-sm rounded-2xl sm:rounded-3xl overflow-hidden border border-white/30 hover:bg-white/60 transition-all duration-300 hover:scale-105">
-                  <div className="aspect-square bg-gradient-to-br from-[#c9ada7]/20 to-[#9a8c98]/20 flex items-center justify-center">
-                    <span className="text-2xl sm:text-4xl font-['Playfair_Display'] text-[#c9ada7]">{project.image}</span>
+                <div className="bg-white/40 dark:bg-luxury-dark-surface/40 backdrop-blur-sm rounded-2xl sm:rounded-3xl overflow-hidden border border-white/30 dark:border-luxury-dark-border/30 hover:bg-white/60 dark:hover:bg-luxury-dark-surface/60 transition-all duration-300 hover:scale-105">
+                  <div className="aspect-square bg-gradient-to-br from-primary-400/20 dark:from-luxury-dark-accent/20 to-primary-500/20 dark:to-luxury-dark-primary/20 flex items-center justify-center">
+                    <span className="text-2xl sm:text-4xl font-['Playfair_Display'] text-primary-400 dark:text-luxury-dark-accent">{project.image}</span>
                   </div>
                   <div className="p-4 sm:p-6">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs sm:text-sm text-[#c9ada7] font-['Inter'] bg-[#c9ada7]/10 px-2 sm:px-3 py-1 rounded-full">
+                      <span className="text-xs sm:text-sm text-primary-400 dark:text-luxury-dark-accent font-['Inter'] bg-primary-400/10 dark:bg-luxury-dark-accent/10 px-2 sm:px-3 py-1 rounded-full">
                         {project.category}
                       </span>
-                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 text-[#9a8c98] group-hover:text-[#c9ada7] transition-colors duration-300" />
+                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 text-primary-500 dark:text-luxury-dark-textSecondary group-hover:text-primary-400 dark:group-hover:text-luxury-dark-accent transition-colors duration-300" />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-['Playfair_Display'] text-[#22223b] mb-2">{project.title}</h3>
-                    <p className="text-xs sm:text-sm text-[#9a8c98] font-['Inter']">{project.description}</p>
+                    <h3 className="text-lg sm:text-xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-2">{project.title}</h3>
+                    <p className="text-xs sm:text-sm text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter']">{project.description}</p>
                   </div>
                 </div>
               </div>
@@ -151,43 +151,43 @@ export default function Portfolio() {
       {/* Project Detail Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6">
-          <div className="bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white/90 dark:bg-luxury-dark-surface/90 backdrop-blur-md rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-4 sm:p-6 lg:p-8">
               <div className="flex justify-between items-start mb-4 sm:mb-6">
                 <div>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-['Playfair_Display'] text-[#22223b] mb-2">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-2">
                     {projects.find(p => p.id === selectedProject)?.title}
                   </h2>
-                  <p className="text-sm sm:text-base text-[#9a8c98] font-['Inter']">
+                  <p className="text-sm sm:text-base text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter']">
                     {projects.find(p => p.id === selectedProject)?.client} • {projects.find(p => p.id === selectedProject)?.year}
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="text-[#9a8c98] hover:text-[#22223b] transition-colors duration-300 text-lg sm:text-xl"
+                  className="text-primary-500 dark:text-luxury-dark-textSecondary hover:text-primary-900 dark:hover:text-luxury-dark-text transition-colors duration-300 text-lg sm:text-xl"
                 >
                   ✕
                 </button>
               </div>
               
-              <div className="aspect-video bg-gradient-to-br from-[#c9ada7]/20 to-[#9a8c98]/20 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
-                <span className="text-3xl sm:text-4xl lg:text-6xl font-['Playfair_Display'] text-[#c9ada7]">
+              <div className="aspect-video bg-gradient-to-br from-primary-400/20 dark:from-luxury-dark-accent/20 to-primary-500/20 dark:to-luxury-dark-primary/20 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                <span className="text-3xl sm:text-4xl lg:text-6xl font-['Playfair_Display'] text-primary-400 dark:text-luxury-dark-accent">
                   {projects.find(p => p.id === selectedProject)?.image}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-['Playfair_Display'] text-[#22223b] mb-3 sm:mb-4">Project Details</h3>
-                  <p className="text-sm sm:text-base text-[#9a8c98] font-['Inter'] mb-4 sm:mb-6">
+                  <h3 className="text-lg sm:text-xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-3 sm:mb-4">Project Details</h3>
+                  <p className="text-sm sm:text-base text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] mb-4 sm:mb-6">
                     {projects.find(p => p.id === selectedProject)?.description}
                   </p>
                   <div className="space-y-2">
-                    <h4 className="font-['Playfair_Display'] text-[#22223b] text-sm sm:text-base">Services Provided:</h4>
+                    <h4 className="font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text text-sm sm:text-base">Services Provided:</h4>
                     <ul className="space-y-1">
                       {projects.find(p => p.id === selectedProject)?.services.map((service, index) => (
-                        <li key={index} className="flex items-center text-sm sm:text-base text-[#9a8c98] font-['Inter']">
-                          <div className="w-2 h-2 bg-[#c9ada7] rounded-full mr-3 flex-shrink-0"></div>
+                        <li key={index} className="flex items-center text-sm sm:text-base text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter']">
+                          <div className="w-2 h-2 bg-primary-400 dark:bg-luxury-dark-accent rounded-full mr-3 flex-shrink-0"></div>
                           {service}
                         </li>
                       ))}
@@ -195,8 +195,8 @@ export default function Portfolio() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-['Playfair_Display'] text-[#22223b] mb-3 sm:mb-4">Client Testimonial</h3>
-                  <blockquote className="text-sm sm:text-base text-[#9a8c98] font-['Inter'] italic mb-4 sm:mb-6">
+                  <h3 className="text-lg sm:text-xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-3 sm:mb-4">Client Testimonial</h3>
+                  <blockquote className="text-sm sm:text-base text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] italic mb-4 sm:mb-6">
                     "{projects.find(p => p.id === selectedProject)?.testimonial}"
                   </blockquote>
                   <Button size="sm" className="sm:size-md">
@@ -213,10 +213,10 @@ export default function Portfolio() {
       {/* CTA Section */}
       <section className="py-12 sm:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-['Playfair_Display'] text-[#22223b] mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-4 sm:mb-6">
             Ready to Start Your Project?
           </h2>
-          <p className="text-base sm:text-xl text-[#9a8c98] mb-6 sm:mb-8 font-['Inter'] px-4">
+          <p className="text-base sm:text-xl text-primary-500 dark:text-luxury-dark-textSecondary mb-6 sm:mb-8 font-['Inter'] px-4">
             Let's create something extraordinary together. Your vision, our expertise.
           </p>
           <Button size="sm" className="sm:size-lg">
