@@ -8,6 +8,8 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 import './App.css';
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </div>

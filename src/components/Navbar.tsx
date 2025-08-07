@@ -111,12 +111,12 @@ export default function Navbar() {
 
             {/* Right: Auth Buttons with proper spacing and visual separator */}
             <div className="flex items-center gap-4 ml-16 pl-6 border-l border-white/30">
-              <button className="font-['Inter'] font-medium text-sm text-[#9a8c98] hover:text-[#22223b] transition-all duration-300 px-3 py-1">
-                Login
-              </button>
-              <button className="px-4 py-1.5 bg-[#d8b4a0] text-white rounded-full font-['Inter'] font-medium text-sm hover:bg-[#c9ada7] hover:shadow-md transition-all duration-300 whitespace-nowrap">
-                Sign Up
-              </button>
+                             <Link to="/login" className="font-['Inter'] font-medium text-sm text-[#9a8c98] hover:text-[#22223b] transition-all duration-300 px-3 py-1">
+                 Login
+               </Link>
+                             <Link to="/signup" className="px-4 py-1.5 bg-[#d8b4a0] text-white rounded-full font-['Inter'] font-medium text-sm hover:bg-[#c9ada7] hover:shadow-md transition-all duration-300 whitespace-nowrap">
+                 Sign Up
+               </Link>
             </div>
           </div>
         </div>
@@ -174,12 +174,12 @@ export default function Navbar() {
 
             {/* Auth Buttons + Menu Toggle with increased spacing */}
             <div className="flex items-center gap-3">
-              <button className="font-['Inter'] font-medium text-xs text-[#9a8c98] hover:text-[#22223b] transition-all duration-300 px-2">
-                Login
-              </button>
-              <button className="px-3 py-1 bg-[#d8b4a0] text-white rounded-full font-['Inter'] font-medium text-xs hover:bg-[#c9ada7] hover:shadow-md transition-all duration-300 whitespace-nowrap">
-                Sign Up
-              </button>
+                             <Link to="/login" className="font-['Inter'] font-medium text-xs text-[#9a8c98] hover:text-[#22223b] transition-all duration-300 px-2">
+                 Login
+               </Link>
+                             <Link to="/signup" className="px-3 py-1 bg-[#d8b4a0] text-white rounded-full font-['Inter'] font-medium text-xs hover:bg-[#c9ada7] hover:shadow-md transition-all duration-300 whitespace-nowrap">
+                 Sign Up
+               </Link>
               <div className="w-px h-4 bg-white/30 mx-1"></div>
               <button
                 onClick={toggleMobileMenu}

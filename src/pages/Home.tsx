@@ -110,15 +110,7 @@ export default function Home() {
             }}></div>
           </div>
           
-          {/* Floating Grid Elements */}
-          <div className="absolute top-20 left-20 w-32 h-32 border border-[#c9ada7]/30 rounded-lg transform rotate-12 animate-float"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 border border-[#9a8c98]/30 rounded-full animate-float delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-[#c9ada7]/25 rounded-lg transform -rotate-12 animate-float delay-500"></div>
-          <div className="absolute top-1/3 right-1/3 w-20 h-20 border border-[#9a8c98]/25 rounded-full animate-float delay-1500"></div>
-          
-          {/* Additional Grid Accents */}
-          <div className="absolute top-1/4 right-1/4 w-12 h-12 border border-[#c9ada7]/20 rounded-lg transform rotate-45 animate-float delay-2000"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-8 h-8 border border-[#9a8c98]/20 rounded-full animate-float delay-3000"></div>
+
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10 pt-20">
