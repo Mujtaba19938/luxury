@@ -1,13 +1,507 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #fefcfb 0%, #f3f0ee 50%, #e8e4e2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f0ee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9ada7;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9a8c98;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Enhanced Grid background animations with maximum visibility */
+@keyframes gridPulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(216, 180, 160, 0.8));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 20px rgba(216, 180, 160, 1));
+  }
+}
+
+@keyframes gridGlow {
+  0% {
+    opacity: 0.5;
+    filter: blur(1px) drop-shadow(0 0 10px rgba(216, 180, 160, 0.8)) drop-shadow(0 0 20px rgba(216, 180, 160, 0.4));
+  }
+  100% {
+    opacity: 0.9;
+    filter: blur(2px) drop-shadow(0 0 25px rgba(216, 180, 160, 1.2)) drop-shadow(0 0 40px rgba(216, 180, 160, 0.6));
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(216, 180, 160, 0.8));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+    filter: drop-shadow(0 0 15px rgba(216, 180, 160, 1)) drop-shadow(0 0 25px rgba(216, 180, 160, 0.6));
+  }
+}
+
+@keyframes glowShift {
+  0% {
+    transform: translateX(-30px) translateY(-30px) scale(0.8);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(15px) translateY(15px) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(30px) translateY(30px) scale(0.9);
+    opacity: 0.3;
+  }
+}
+
+@keyframes scanLine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes scanLineVertical {
+  0% {
+    background-position: 0 -200%;
+  }
+  100% {
+    background-position: 0 200%;
+  }
+}
+
+/* Contact page animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientX {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradientX 3s ease infinite;
+}
+
+.animate-expand-width {
+  animation: expandWidth 1.5s ease-out 0.8s forwards;
+}
+
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, input, textarea {
+  transition: all 0.3s ease;
+}
+
+/* Focus styles */
+input:focus, textarea:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #c9ada7;
+}
+
+/* Custom button hover effects */
+.btn-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-hover:hover::before {
+  left: 100%;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+  }
+  
+  /* Maintain grid visibility on mobile with reduced intensity */
+  @keyframes gridPulse {
+    0% {
+      opacity: 0.5;
+      transform: scale(1);
+      filter: drop-shadow(0 0 6px rgba(216, 180, 160, 0.6));
+    }
+    100% {
+      opacity: 0.8;
+      transform: scale(1.01);
+      filter: drop-shadow(0 0 12px rgba(216, 180, 160, 0.8));
+    }
+  }
+  
+  @keyframes gridGlow {
+    0% {
+      opacity: 0.4;
+      filter: blur(1px) drop-shadow(0 0 6px rgba(216, 180, 160, 0.6));
+    }
+    100% {
+      opacity: 0.7;
+      filter: blur(1.5px) drop-shadow(0 0 15px rgba(216, 180, 160, 0.9));
+    }
+  }
+  
+  @keyframes dotPulse {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+      filter: drop-shadow(0 0 4px rgba(216, 180, 160, 0.5));
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 10px rgba(216, 180, 160, 0.8));
+    }
+  }
+}
+
+/* Animation delays for staggered effects */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #c9ada7, #9a8c98);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom selection color */
+::selection {
+  background: #c9ada7;
+  color: white;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Hover effects for cards */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(201, 173, 167, 0.15);
+}
+
+/* Custom backdrop blur for better browser support */
+.backdrop-blur-custom {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Ensure proper stacking context */
+.navbar-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile-first responsive design helpers */
+@media (max-width: 640px) {
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-text-center {
+    text-align: center;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Show static grid for reduced motion */
+  @keyframes gridPulse {
+    0%, 100% {
+      opacity: 0.8;
+      transform: scale(1);
+      filter: drop-shadow(0 0 10px rgba(216, 180, 160, 0.8));
+    }
+  }
+  
+  @keyframes gridGlow {
+    0%, 100% {
+      opacity: 0.6;
+      filter: blur(1px) drop-shadow(0 0 10px rgba(216, 180, 160, 0.6));
+    }
+  }
+  
+  @keyframes dotPulse {
+    0%, 100% {
+      opacity: 0.7;
+      transform: scale(1);
+      filter: drop-shadow(0 0 6px rgba(216, 180, 160, 0.7));
+    }
+  }
+  
+  @keyframes scanLine {
+    0%, 100% {
+      background-position: 0% 0;
+    }
+  }
+  
+  @keyframes scanLineVertical {
+    0%, 100% {
+      background-position: 0 0%;
+    }
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-muted {
+    color: #000;
+  }
+  
+  .bg-subtle {
+    background-color: #fff;
+    border: 2px solid #000;
+  }
+}
+
+/* Dark mode preparation (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles would go here */
+}
+
+/* Enhanced glow effects for better visibility */
+.glow-text {
+  text-shadow: 0 0 10px rgba(216, 180, 160, 0.8);
+}
+
+.glow-border {
+  box-shadow: 0 0 20px rgba(216, 180, 160, 0.6);
+}
+
+/* Enhanced Cyberpunk-style grid */
+.cyber-grid {
+  position: relative;
+}
+
+.cyber-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, transparent 48px, rgba(216, 180, 160, 0.1) 49px, rgba(216, 180, 160, 0.1) 51px, transparent 52px),
+    linear-gradient(rgba(216, 180, 160, 0.1) 48px, rgba(216, 180, 160, 0.1) 49px, transparent 51px, transparent 52px);
+  background-size: 50px 50px;
+  animation: gridShift 20s linear infinite;
+}
+
+@keyframes gridShift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Grid visibility enhancements */
+.grid-enhanced {
+  background-blend-mode: screen;
+}
+
+/* Fallback for older browsers */
+@supports not (backdrop-filter: blur(10px)) {
+  .backdrop-blur-md {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Ensure grid is visible on all devices */
+@media (min-resolution: 2dppx) {
+  .cyber-grid::before {
+    background-size: 25px 25px;
+  }
+}
+
+/* Force hardware acceleration for grid animations */
+.grid-layer {
+  transform: translate3d(0, 0, 0);
+  will-change: opacity, transform, filter;
+}
+
+/* Additional grid pattern for maximum compatibility */
+.grid-fallback {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(216, 180, 160, 0.5) 1px, transparent 0);
+  background-size: 50px 50px;
 }
