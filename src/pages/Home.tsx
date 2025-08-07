@@ -240,6 +240,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Newsletter Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-6">
+            Stay Inspired
+          </h2>
+          <p className="text-xl text-primary-500 dark:text-luxury-dark-textSecondary mb-8 font-['Inter'] max-w-2xl mx-auto">
+            Subscribe to our newsletter for the latest insights on luxury design trends and exclusive project showcases.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 w-full px-6 py-4 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 border border-white/30 dark:border-luxury-dark-border/30 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary font-['Inter']"
+            />
+            <Button className="group whitespace-nowrap">
+              Subscribe
+              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
