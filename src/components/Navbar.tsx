@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Mail, ArrowRight } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import ProfileModal from './ProfileModal';
@@ -12,6 +12,8 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
   const location = useLocation();
   const { user, isAuthenticated } = useAuth();
   const { theme } = useTheme();
@@ -53,6 +55,14 @@ export default function Navbar() {
 
   const handleProfileClick = () => {
     setIsProfileModalOpen(true);
+  };
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle newsletter subscription
+    console.log('Newsletter subscription:', newsletterEmail);
+    setNewsletterEmail('');
+    setIsNewsletterOpen(false);
   };
 
   return (
@@ -119,8 +129,57 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right: Theme Toggle, Auth Buttons or Profile Icon */}
+            {/* Right: Newsletter, Theme Toggle, Auth Buttons or Profile Icon */}
             <div className="flex items-center gap-4 ml-16 pl-6 border-l border-white/30 dark:border-luxury-dark-border/30">
+              {/* Newsletter Dropdown */}
+              <div className="relative group">
+                <button
+                  onMouseEnter={() => setIsNewsletterOpen(true)}
+                  onMouseLeave={() => setIsNewsletterOpen(false)}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-white/40 dark:hover:bg-luxury-dark-surfaceHover/40 transition-all duration-300 group"
+                >
+                  <Mail className="w-4 h-4 text-primary-500 dark:text-luxury-dark-textSecondary" />
+                  <span className="font-['Inter'] font-medium text-sm text-primary-500 dark:text-luxury-dark-textSecondary group-hover:text-primary-900 dark:group-hover:text-luxury-dark-text">
+                    Newsletter
+                  </span>
+                </button>
+                
+                {/* Newsletter Dropdown */}
+                {isNewsletterOpen && (
+                  <div 
+                    className="absolute top-full right-0 mt-2 w-80 bg-white/95 dark:bg-luxury-dark-surface/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/30 dark:border-luxury-dark-border/30 p-4"
+                    onMouseEnter={() => setIsNewsletterOpen(true)}
+                    onMouseLeave={() => setIsNewsletterOpen(false)}
+                  >
+                    <div className="text-center mb-3">
+                      <h3 className="font-['Playfair_Display'] font-semibold text-primary-900 dark:text-luxury-dark-text text-lg mb-1">
+                        Stay Inspired
+                      </h3>
+                      <p className="text-primary-500 dark:text-luxury-dark-textSecondary text-sm">
+                        Get the latest luxury design insights
+                      </p>
+                    </div>
+                    <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+                      <input
+                        type="email"
+                        value={newsletterEmail}
+                        onChange={(e) => setNewsletterEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        className="w-full px-4 py-2 bg-white/70 dark:bg-luxury-dark-surfaceHover/70 border border-white/40 dark:border-luxury-dark-border/40 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary font-['Inter'] text-sm"
+                        required
+                      />
+                      <button
+                        type="submit"
+                        className="w-full px-4 py-2 bg-primary-300 dark:bg-luxury-dark-accent text-white rounded-full font-['Inter'] font-medium text-sm hover:bg-primary-400 dark:hover:bg-luxury-dark-accentHover hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2"
+                      >
+                        Subscribe
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </form>
+                  </div>
+                )}
+              </div>
+
               {/* Theme Toggle */}
               <ThemeToggle size="sm" />
               
@@ -205,6 +264,14 @@ export default function Navbar() {
 
             {/* Theme Toggle, Auth Buttons + Menu Toggle with increased spacing */}
             <div className="flex items-center gap-3">
+              {/* Newsletter Button */}
+              <button
+                onClick={() => setIsNewsletterOpen(!isNewsletterOpen)}
+                className="p-1.5 rounded-full hover:bg-white/40 dark:hover:bg-luxury-dark-surfaceHover/40 transition-all duration-300"
+              >
+                <Mail className="w-4 h-4 text-primary-500 dark:text-luxury-dark-textSecondary" />
+              </button>
+
               {/* Theme Toggle */}
               <ThemeToggle size="sm" />
               
@@ -247,6 +314,40 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Newsletter Overlay */}
+      {isNewsletterOpen && (
+        <div className="fixed inset-0 z-[90] lg:hidden">
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setIsNewsletterOpen(false)}></div>
+          <div className="absolute top-20 left-4 right-4 bg-white/95 dark:bg-luxury-dark-surface/95 backdrop-blur-md rounded-3xl shadow-xl border border-white/30 dark:border-luxury-dark-border/30 p-6">
+            <div className="text-center mb-4">
+              <h3 className="font-['Playfair_Display'] font-semibold text-primary-900 dark:text-luxury-dark-text text-xl mb-2">
+                Stay Inspired
+              </h3>
+              <p className="text-primary-500 dark:text-luxury-dark-textSecondary text-sm">
+                Get the latest luxury design insights
+              </p>
+            </div>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+              <input
+                type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 bg-white/70 dark:bg-luxury-dark-surfaceHover/70 border border-white/40 dark:border-luxury-dark-border/40 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary font-['Inter'] text-sm"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full px-4 py-3 bg-primary-300 dark:bg-luxury-dark-accent text-white rounded-full font-['Inter'] font-medium text-sm hover:bg-primary-400 dark:hover:bg-luxury-dark-accentHover hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                Subscribe
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
