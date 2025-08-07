@@ -1,10 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import Button from './Button';
 
 export default function Footer() {
   return (
     <footer className="bg-white/60 dark:bg-luxury-dark-surface/60 backdrop-blur-md border-t border-white/30 dark:border-luxury-dark-border/30 mt-20">
+      {/* Newsletter Section */}
+      <section className="py-16 px-6 bg-gradient-to-br from-primary-50/50 via-primary-100/30 to-primary-200/50 dark:from-luxury-dark-bg/50 dark:via-luxury-dark-surface/30 dark:to-luxury-dark-surface/50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] text-primary-900 dark:text-luxury-dark-text mb-6">
+            Stay Inspired
+          </h2>
+          <p className="text-xl text-primary-500 dark:text-luxury-dark-textSecondary mb-8 font-['Inter'] max-w-2xl mx-auto">
+            Subscribe to our newsletter for the latest insights on luxury design trends and exclusive project showcases.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 w-full px-6 py-4 bg-white/70 dark:bg-luxury-dark-surfaceHover/70 border border-white/40 dark:border-luxury-dark-border/40 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-400 dark:focus:ring-luxury-dark-accent text-primary-900 dark:text-luxury-dark-text placeholder-primary-500 dark:placeholder-luxury-dark-textSecondary font-['Inter'] shadow-sm"
+            />
+            <Button className="group whitespace-nowrap shadow-sm">
+              Subscribe
+              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <div className="container mx-auto px-4 py-12">
         {/* Main Content - 4 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
@@ -115,9 +139,9 @@ export default function Footer() {
                 <Link to="/contact" className="text-primary-600 dark:text-luxury-dark-textSecondary hover:text-[#CFA88D] transition-colors text-sm">
                   FAQ
                 </Link>
-              </li>
-            </ul>
-          </div>
+                  </li>
+              </ul>
+            </div>
         </div>
 
         {/* Bottom Section */}
