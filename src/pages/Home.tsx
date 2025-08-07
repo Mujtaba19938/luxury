@@ -134,27 +134,16 @@ export default function Home() {
           <p className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-lg">Trusted by industry leaders</p>
         </div>
         <div className="relative">
-                     {/* First row - moving left */}
-           <div className="flex animate-marquee-left space-x-12 mb-8">
-             {[...trustedBrands, ...trustedBrands, ...trustedBrands, ...trustedBrands].map((brand, index) => (
-               <div key={`left-${index}`} className="flex-shrink-0">
-                 <div className="w-24 h-24 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-110 transition-transform duration-300">
-                   <span className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-sm font-medium">{brand}</span>
-                 </div>
-               </div>
-             ))}
-           </div>
-           
-           {/* Second row - moving right */}
-           <div className="flex animate-marquee-right space-x-12">
-             {[...trustedBrands, ...trustedBrands, ...trustedBrands, ...trustedBrands].map((brand, index) => (
-               <div key={`right-${index}`} className="flex-shrink-0">
-                 <div className="w-24 h-24 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-110 transition-transform duration-300">
-                   <span className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-sm font-medium">{brand}</span>
-                 </div>
-               </div>
-             ))}
-           </div>
+          {/* Single row - moving left */}
+          <div className="flex animate-marquee-left space-x-12">
+            {[...trustedBrands, ...trustedBrands, ...trustedBrands, ...trustedBrands].map((brand, index) => (
+              <div key={`left-${index}`} className="flex-shrink-0">
+                <div className="w-24 h-24 bg-white/50 dark:bg-luxury-dark-surfaceHover/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 dark:border-luxury-dark-border/30 hover:scale-110 transition-transform duration-300">
+                  <span className="text-primary-500 dark:text-luxury-dark-textSecondary font-['Inter'] text-sm font-medium">{brand}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
