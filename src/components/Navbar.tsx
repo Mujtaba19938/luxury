@@ -48,22 +48,22 @@ export default function Navbar() {
   return (
     <>
       {/* Desktop Navbar */}
-      <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 hidden lg:block ${
+      <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-[100] transition-all duration-500 hidden lg:block ${
         isScrolled ? 'scale-95' : 'scale-100'
       } ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
         {/* Navbar Grid Background */}
         <div className="absolute inset-0 rounded-full overflow-hidden">
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#fefcfb]/80 via-[#f3f0ee]/80 to-[#e8e4e2]/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#fefcfb]/85 via-[#f3f0ee]/85 to-[#e8e4e2]/85"></div>
           
           {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-10 animate-grid-pulse">
+          <div className="absolute inset-0 opacity-20 animate-grid-pulse">
             <div className="absolute inset-0" style={{
               backgroundImage: `
-                linear-gradient(rgba(201, 173, 167, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(201, 173, 167, 0.1) 1px, transparent 1px)
+                linear-gradient(rgba(201, 173, 167, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 173, 167, 0.2) 1px, transparent 1px)
               `,
-              backgroundSize: '30px 30px'
+              backgroundSize: '20px 20px'
             }}></div>
           </div>
           
@@ -71,10 +71,21 @@ export default function Navbar() {
           <div className="absolute inset-0">
             <div className="absolute inset-0" style={{
               backgroundImage: `
-                radial-gradient(circle at 15px 15px, rgba(201, 173, 167, 0.2) 1px, transparent 1px)
+                radial-gradient(circle at 10px 10px, rgba(201, 173, 167, 0.3) 1px, transparent 1px)
               `,
-              backgroundSize: '30px 30px',
+              backgroundSize: '20px 20px',
               animation: 'pulse 4s ease-in-out infinite'
+            }}></div>
+          </div>
+          
+          {/* Secondary Grid Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                linear-gradient(rgba(154, 140, 152, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(154, 140, 152, 0.12) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px'
             }}></div>
           </div>
         </div>
@@ -112,22 +123,22 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Navbar */}
-      <nav className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 lg:hidden ${
+      <nav className={`fixed top-4 left-4 right-4 z-[100] transition-all duration-500 lg:hidden ${
         isScrolled ? 'scale-95' : 'scale-100'
       } ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
         {/* Mobile Navbar Grid Background */}
         <div className="absolute inset-0 rounded-full overflow-hidden">
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#fefcfb]/80 via-[#f3f0ee]/80 to-[#e8e4e2]/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#fefcfb]/85 via-[#f3f0ee]/85 to-[#e8e4e2]/85"></div>
           
           {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-10 animate-grid-pulse">
+          <div className="absolute inset-0 opacity-20 animate-grid-pulse">
             <div className="absolute inset-0" style={{
               backgroundImage: `
-                linear-gradient(rgba(201, 173, 167, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(201, 173, 167, 0.1) 1px, transparent 1px)
+                linear-gradient(rgba(201, 173, 167, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 173, 167, 0.2) 1px, transparent 1px)
               `,
-              backgroundSize: '30px 30px'
+              backgroundSize: '20px 20px'
             }}></div>
           </div>
           
@@ -135,10 +146,21 @@ export default function Navbar() {
           <div className="absolute inset-0">
             <div className="absolute inset-0" style={{
               backgroundImage: `
-                radial-gradient(circle at 15px 15px, rgba(201, 173, 167, 0.2) 1px, transparent 1px)
+                radial-gradient(circle at 10px 10px, rgba(201, 173, 167, 0.3) 1px, transparent 1px)
               `,
-              backgroundSize: '30px 30px',
+              backgroundSize: '20px 20px',
               animation: 'pulse 4s ease-in-out infinite'
+            }}></div>
+          </div>
+          
+          {/* Secondary Grid Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                linear-gradient(rgba(154, 140, 152, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(154, 140, 152, 0.12) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px'
             }}></div>
           </div>
         </div>
@@ -176,7 +198,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-[90] lg:hidden">
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={toggleMobileMenu}></div>
           <div className="absolute top-20 left-4 right-4 bg-white/90 backdrop-blur-md rounded-3xl shadow-xl border border-white/30 p-6">
             <div className="space-y-4">

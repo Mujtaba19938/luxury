@@ -69,59 +69,59 @@ export default function Home() {
   const yearsCount = useCountUp(15, 1500, 1000);
 
   return (
-    <div className="pt-16 relative">
+    <div className="relative">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
-        {/* Hero Grid Background */}
-        <div className="absolute inset-0 z-[-1]">
+      <section className="min-h-screen flex items-center justify-center px-6 relative">
+        {/* Hero Grid Background - Starts from very top */}
+        <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 z-[-1] w-full h-full">
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#fefcfb] via-[#f3f0ee] to-[#e8e4e2]"></div>
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#fefcfb] via-[#f3f0ee] to-[#e8e4e2]"></div>
           
           {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-20 animate-grid-pulse">
-            <div className="absolute inset-0" style={{
+          <div className="absolute inset-0 w-full h-full opacity-30 animate-grid-pulse">
+            <div className="absolute inset-0 w-full h-full" style={{
               backgroundImage: `
-                linear-gradient(rgba(201, 173, 167, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(201, 173, 167, 0.1) 1px, transparent 1px)
+                linear-gradient(rgba(201, 173, 167, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 173, 167, 0.2) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px'
+              backgroundSize: '40px 40px'
             }}></div>
           </div>
           
           {/* Animated Grid Dots */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0" style={{
+          <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 w-full h-full" style={{
               backgroundImage: `
-                radial-gradient(circle at 30px 30px, rgba(201, 173, 167, 0.3) 2px, transparent 2px)
+                radial-gradient(circle at 20px 20px, rgba(201, 173, 167, 0.4) 2px, transparent 2px)
               `,
-              backgroundSize: '60px 60px',
+              backgroundSize: '40px 40px',
               animation: 'pulse 4s ease-in-out infinite'
             }}></div>
           </div>
           
           {/* Secondary Grid Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
+          <div className="absolute inset-0 w-full h-full opacity-15">
+            <div className="absolute inset-0 w-full h-full" style={{
               backgroundImage: `
-                linear-gradient(rgba(154, 140, 152, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(154, 140, 152, 0.08) 1px, transparent 1px)
+                linear-gradient(rgba(154, 140, 152, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(154, 140, 152, 0.12) 1px, transparent 1px)
               `,
-              backgroundSize: '120px 120px'
+              backgroundSize: '80px 80px'
             }}></div>
           </div>
           
           {/* Floating Grid Elements */}
-          <div className="absolute top-20 left-20 w-32 h-32 border border-[#c9ada7]/20 rounded-lg transform rotate-12 animate-float"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 border border-[#9a8c98]/20 rounded-full animate-float delay-1000"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-[#c9ada7]/15 rounded-lg transform -rotate-12 animate-float delay-500"></div>
-          <div className="absolute top-1/3 right-1/3 w-20 h-20 border border-[#9a8c98]/15 rounded-full animate-float delay-1500"></div>
+          <div className="absolute top-20 left-20 w-32 h-32 border border-[#c9ada7]/30 rounded-lg transform rotate-12 animate-float"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 border border-[#9a8c98]/30 rounded-full animate-float delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-[#c9ada7]/25 rounded-lg transform -rotate-12 animate-float delay-500"></div>
+          <div className="absolute top-1/3 right-1/3 w-20 h-20 border border-[#9a8c98]/25 rounded-full animate-float delay-1500"></div>
           
           {/* Additional Grid Accents */}
-          <div className="absolute top-1/4 right-1/4 w-12 h-12 border border-[#c9ada7]/10 rounded-lg transform rotate-45 animate-float delay-2000"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-8 h-8 border border-[#9a8c98]/10 rounded-full animate-float delay-3000"></div>
+          <div className="absolute top-1/4 right-1/4 w-12 h-12 border border-[#c9ada7]/20 rounded-lg transform rotate-45 animate-float delay-2000"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-8 h-8 border border-[#9a8c98]/20 rounded-full animate-float delay-3000"></div>
         </div>
 
-        <div className="text-center max-w-4xl mx-auto relative z-10">
+        <div className="text-center max-w-4xl mx-auto relative z-10 pt-20">
           <h1 className="text-6xl md:text-8xl font-['Playfair_Display'] text-[#22223b] mb-6 leading-tight">
             Luxury
             <span className="block text-[#c9ada7]">Redefined</span>
